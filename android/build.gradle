@@ -2,6 +2,8 @@ group 'co.delightfulgoods.flutterpayments'
 version '1.0-SNAPSHOT'
 
 buildscript {
+    ext.kotlin_version = '1.2.41'
+
     repositories {
         google()
         jcenter()
@@ -9,7 +11,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.41"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 
     repositories {
@@ -34,6 +36,7 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs = ['src/test/kotlin']
     }
     defaultConfig {
         minSdkVersion 16
@@ -45,6 +48,12 @@ android {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:1.2.41"
+    implementation fileTree(dir: 'lib', include: ['*.jar'])
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     api 'com.android.billingclient:billing:1.1'
+
+    testImplementation 'junit:junit:5.0.0'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

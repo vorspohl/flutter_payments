@@ -69,7 +69,6 @@ class Purchase {
         autoRenewing: data['isAutoRenewing'] as bool,
         purchaseTime: DateTime.fromMillisecondsSinceEpoch(data['purchaseTime']),
         sku: data['sku'],
-        signature: data['signature'],
       );
     }
 
