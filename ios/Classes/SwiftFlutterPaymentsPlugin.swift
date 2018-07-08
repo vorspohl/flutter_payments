@@ -4,8 +4,17 @@ import StoreKit
 
 public class SwiftFlutterPaymentsPlugin: NSObject, FlutterPlugin {
     var cachedProducts: [String: SKProduct] = [:]
+    var productRequest: ProductRequestHandler?
+    var transactionHandler: PaymentTransactionHandler
     
-    static let instance:SwiftFlutterPaymentsPlugin = SwiftFlutterPaymentsPlugin()
+    override init() {
+        transactionHandler = PaymentTransactionHandler()
+        SKPaymentQueue.default().add(transactionHandler)
+        
+        super.init()
+    }
+    
+     static let instance:SwiftFlutterPaymentsPlugin = SwiftFlutterPaymentsPlugin()
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "co.delightfulgoods.flutterpayments", binaryMessenger: registrar.messenger())
@@ -16,12 +25,12 @@ public class SwiftFlutterPaymentsPlugin: NSObject, FlutterPlugin {
         let callArgs = call.arguments as? Dictionary<String, Any>
 
         switch call.method {
-        case "getPurchaseHistory": getPurchaseHistory(result)
-        case "getProducts": getProducts(result, callArgs!["skus"] as! [String])
-        case "purchase": purchase(result, callArgs!["sku"] as! String)
-        case "billingEnabled": result(billingEnabled)
+            case "getPurchaseHistory": getPurchaseHistory(result)
+            case "getProducts": getProducts(result, callArgs!["skus"] as! [String])
+            case "purchase": purchase(result, callArgs!["sku"] as! String)
+            case "billingEnabled": result(billingEnabled)
 
-        default: result(FlutterMethodNotImplemented)
+            default: result(FlutterMethodNotImplemented)
         }
     }
     
@@ -37,13 +46,14 @@ public class SwiftFlutterPaymentsPlugin: NSObject, FlutterPlugin {
     }
     
     public func getPurchaseHistory(_ result: @escaping FlutterResult) {
-        SKPaymentQueue.default().add(PaymentTransactionHandler(result))
+        transactionHandler.flutterResult = result
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
     
     public func getProducts(_ result: @escaping FlutterResult, _ skus: [String]) {
-        let request = SKProductsRequest(productIdentifiers: NSSet(array: skus) as! Set<String>)
-        request.delegate = ProductRequestHandler(result)
+        let request = SKProductsRequest(productIdentifiers:  NSSet(array: skus) as! Set<String>)
+        productRequest = ProductRequestHandler(result)
+        request.delegate = productRequest
         request.start()
     }
 }
@@ -61,7 +71,7 @@ class ProductRequestHandler : NSObject, SKProductsRequestDelegate {
     }
     
     private func productToDictionary(_ productData:SKProduct) -> Dictionary<String, Any> {
-        SwiftFlutterPaymentsPlugin.instance.cachedProducts[productData.productIdentifier] = productData
+        // SwiftFlutterPaymentsPlugin.instance.cachedProducts[productData.productIdentifier] = productData
         
         let numberFormatter = NumberFormatter()
         numberFormatter.formatterBehavior = .behavior10_4
@@ -79,11 +89,7 @@ class ProductRequestHandler : NSObject, SKProductsRequestDelegate {
 
 
 class PaymentTransactionHandler : NSObject, SKPaymentTransactionObserver {
-    var flutterResult : FlutterResult
-    
-    init(_ result: @escaping FlutterResult) {
-        self.flutterResult = result;
-    }
+    var flutterResult : FlutterResult?
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         var payments:Array<Dictionary<String, Any>> = []
@@ -103,8 +109,8 @@ class PaymentTransactionHandler : NSObject, SKPaymentTransactionObserver {
         }
         
         if(payments.count > 0) {
-            flutterResult(payments)
-            SKPaymentQueue.default().remove(self)
+            flutterResult!(payments)
+            flutterResult = nil
         }
     }
     

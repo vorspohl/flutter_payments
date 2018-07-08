@@ -11,63 +11,32 @@ import 'types.dart';
 class FlutterPayments {
   static const MethodChannel _channel = const MethodChannel('co.delightfulgoods.flutterpayments');
 
-  static Future<List<Purchase>> getPurchaseHistory(ProductType type) async {
-    try {
-      return await inflatePurchases(
+  static Future<List<Purchase>> getPurchaseHistory(ProductType type) async => await _inflatePurchases(
         await _channel.invokeMethod(
           'getPurchaseHistory',
-          {
-            "productType": type.toString(),
+          <String, dynamic>{
+            'productType': type.toString(),
           },
         ),
         type,
       );
-    } on PlatformException catch (e) {
-      switch (e.code) {
-        case "ITEM_UNAVAILABLE":
-          throw ItemUnavailable();
-        case "ITEM_ALREADY_OWNED":
-          throw ItemAlreadyOwned();
-      }
-    }
 
-    return null;
-  }
-
-  static Future<List<Purchase>> inflatePurchases(List result, ProductType type) async {
-    if (result == null) {
-      return null;
-    }
-
-    var purchases = result.map<Purchase>(Purchase.fromMap).toList(growable: false);
-
-    List<Product> products = await getProducts(
-      skus: purchases.map((Purchase p) => p.sku).toList(),
-      type: type,
-    );
-
-    if (products != null) {
-      Map<String, Product> index = {};
-      for (var p in products) {
-        index[p.sku] = p;
-      }
-
-      for (var p in purchases) {
-        if (index.containsKey(p.sku)) {
-          p.product = index[p.sku];
-        }
-      }
-    }
-
-    return purchases;
-  }
+  static Future<List<Purchase>> getPurchases(ProductType type) async => await _inflatePurchases(
+        await _channel.invokeMethod(
+          'getPurchaseHistory',
+          <String, dynamic>{
+            'productType': type.toString(),
+          },
+        ),
+        type,
+      );
 
   static Future<List<Product>> getProducts({List<String> skus, ProductType type}) async {
-    var result = await _channel.invokeMethod(
+    final List<Map<String, dynamic>> result = await _channel.invokeMethod(
       'getProducts',
-      {
-        "skus": skus,
-        "productType": type.toString(),
+      <String, dynamic>{
+        'skus': skus,
+        'productType': type.toString(),
       },
     );
 
@@ -86,21 +55,23 @@ class FlutterPayments {
 
   static Future<List<Purchase>> purchase({String sku, ProductType type}) async {
     try {
-      return inflatePurchases(
+      return _inflatePurchases(
         await _channel.invokeMethod(
           'purchase',
-          {
-            "sku": sku,
-            "productType": type.toString(),
+          <String, dynamic>{
+            'sku': sku,
+            'productType': type.toString(),
           },
         ),
         type,
       );
     } on PlatformException catch (e) {
       switch (e.code) {
-        case "ITEM_UNAVAILABLE":
+        case 'USER_CANCELED':
+          throw UserCanceled();
+        case 'ITEM_UNAVAILABLE':
           throw ItemUnavailable();
-        case "ITEM_ALREADY_OWNED":
+        case 'ITEM_ALREADY_OWNED':
           throw ItemAlreadyOwned();
       }
     }
@@ -108,24 +79,61 @@ class FlutterPayments {
     return null;
   }
 
-  static modifySubscription({
+  static Future<String> consumeToken(String token) async {
+    return await _channel.invokeMethod(
+      'consumeToken',
+      <String, dynamic>{
+        'token': token,
+      },
+    );
+  }
+
+  static Future<List<Purchase>> modifySubscription({
     String newSku,
     String oldSku,
   }) async =>
       await _channel.invokeMethod(
         'modifySubscription',
-        {
-          "oldSku": oldSku,
-          "newSku": newSku,
+        <String, dynamic>{
+          'oldSku': oldSku,
+          'newSku': newSku,
         },
       );
 
-  static launchManageSubscription() async {
+  static void launchManageSubscription() async {
     if (defaultTargetPlatform == TargetPlatform.android) {
-      const url = 'https://play.google.com/store/account/subscriptions';
+      const String url = 'https://play.google.com/store/account/subscriptions';
       if (await canLaunch(url)) {
         await launch(url);
       }
     }
   }
+}
+
+Future<List<Purchase>> _inflatePurchases(List<Map<String, dynamic>> result, ProductType type) async {
+  if (result == null || result.isEmpty) {
+    return null;
+  }
+
+  final List<Purchase> purchases = result.map<Purchase>(Purchase.fromMap).toList(growable: false);
+
+  final List<Product> products = await FlutterPayments.getProducts(
+    skus: purchases.map((Purchase p) => p.sku).toList(),
+    type: type,
+  );
+
+  if (products != null && products.isNotEmpty) {
+    final Map<String, Product> index = <String, Product>{};
+    for (Product p in products) {
+      index[p.sku] = p;
+    }
+
+    for (Purchase p in purchases) {
+      if (index.containsKey(p.sku)) {
+        p.product = index[p.sku];
+      }
+    }
+  }
+
+  return purchases;
 }

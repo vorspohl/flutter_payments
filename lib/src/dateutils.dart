@@ -11,3 +11,5 @@ DateTime addMonths(DateTime val, [int months = 1]) {
 }
 
 DateTime addWeeks(DateTime val, [int weeks = 1]) => val.add(Duration(days: weeks * 7));
+
+DateTime addYears(DateTime val, [int years = 1]) => val.add(Duration(days: years * 365));

@@ -18,7 +18,7 @@ class Product {
       );
     }
 
-    throw new Exception("Got bad data: $data");
+    throw new Exception('Got bad data: $data');
   }
 }
 
@@ -55,28 +55,50 @@ class SubscriptionProduct extends Product {
         title: data['title'],
         description: data['description'],
         price: data['price'],
-        freeTrialPeriod: Period(data['freeTrialPeriod']),
+        freeTrialPeriod: Period.ifValid(data['freeTrialPeriod']),
         introductoryPrice: data['introductoryPrice'],
-        introductoryPricePeriod: Period(data['introductoryPricePeriod']),
+        introductoryPricePeriod: Period.ifValid(data['introductoryPricePeriod']),
         introductoryPriceCycles: data['introductoryPriceCycles'],
-        subscriptionPeriod: Period(data['subscriptionPeriod']),
+        subscriptionPeriod: Period.ifValid(data['subscriptionPeriod']),
       );
     }
 
-    throw new Exception("Got bad data: $data");
+    throw new Exception('Got bad data: $data');
+  }
+
+  List<String> get planDescription {
+    final List<String> parts = <String>[];
+
+    if (freeTrialPeriod != null) {
+      parts.add('Includes a free trial for ${freeTrialPeriod.toString()}');
+    }
+
+    if (introductoryPricePeriod != null) {
+      final String introPeriod = introductoryPricePeriod.toString();
+      parts.add(('Introductory price of **$introductoryPrice**/$introPeriod for **$introductoryPriceCycles** cycles.'));
+    }
+
+    final String period = subscriptionPeriod.toString();
+    parts.add('Subscription is **$price**/$period');
+
+    return parts;
   }
 }
 
 class Period {
   final String _input;
 
-  Period(this._input);
+  Period._internal(this._input);
 
-  bool get valid => _input is String && _input.length >= 3;
+  factory Period.ifValid(String input) {
+    if (input is String && input.length >= 3) {
+      return Period._internal(input);
+    }
+
+    return null;
+  }
 
   String get type {
-    if (!valid) return null;
-
     switch (_input[_input.length - 1]) {
       case 'D':
         return 'day';
@@ -84,21 +106,19 @@ class Period {
         return 'week';
       case 'M':
         return 'month';
+      case 'Y':
+        return 'year';
       default:
         return 'unknown';
     }
   }
 
   int get length {
-    if (!valid) return null;
-
     return int.tryParse(_input.substring(1, _input.length - 1));
   }
 
   @override
   String toString() {
-    if (!valid) return null;
-
     if (length == 1) {
       return type;
     } else {

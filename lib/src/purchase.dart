@@ -20,42 +20,8 @@ class Purchase {
     this.autoRenewing,
     this.sku,
     this.signature,
+    this.product,
   });
-
-  bool get isActive {
-    return purchaseExpires is DateTime && purchaseExpires.isAfter(DateTime.now());
-  }
-
-  bool get isTrialPeriod {
-    assert(product is SubscriptionProduct);
-    var sub = product as SubscriptionProduct;
-
-    return sub.freeTrialPeriod.valid && _addPeriodToPurchaseTime(sub.freeTrialPeriod).isAfter(DateTime.now());
-  }
-
-  DateTime get purchaseExpires {
-    assert(product is SubscriptionProduct);
-    var sub = product as SubscriptionProduct;
-
-    if (sub.subscriptionPeriod.valid) {
-      return _addPeriodToPurchaseTime(sub.subscriptionPeriod);
-    }
-
-    return null;
-  }
-
-  DateTime _addPeriodToPurchaseTime(Period period) {
-    int length = period.length;
-
-    switch (period.type) {
-      case 'month':
-        return addMonths(purchaseTime, length);
-      case 'week':
-        return addWeeks(purchaseTime, length);
-    }
-
-    return purchaseTime.add(Duration(days: length));
-  }
 
   static Purchase fromMap(dynamic data) {
     print('Purchase.fromMap: $data');
@@ -73,5 +39,42 @@ class Purchase {
     }
 
     throw new Exception("Got bad data: $data");
+  }
+
+  bool get isActive => purchaseExpires is DateTime && purchaseExpires.isAfter(DateTime.now());
+
+  bool get isTrialPeriod {
+    assert(product is SubscriptionProduct);
+    var sub = product as SubscriptionProduct;
+
+    return sub.freeTrialPeriod != null && _addPeriodToPurchaseTime(sub.freeTrialPeriod).isAfter(DateTime.now());
+  }
+
+  DateTime get purchaseExpires {
+    assert(product is SubscriptionProduct);
+    var sub = product as SubscriptionProduct;
+
+    if (sub.subscriptionPeriod != null) {
+      return _addPeriodToPurchaseTime(sub.subscriptionPeriod);
+    }
+
+    return null;
+  }
+
+  DateTime _addPeriodToPurchaseTime(Period period) {
+    int length = period.length;
+
+    switch (period.type) {
+      case 'day':
+        return purchaseTime.add(Duration(days: length));
+      case 'month':
+        return addMonths(purchaseTime, length);
+      case 'week':
+        return addWeeks(purchaseTime, length);
+      case 'year':
+        return addYears(purchaseTime, length);
+    }
+
+    return purchaseTime.add(Duration(days: length));
   }
 }
