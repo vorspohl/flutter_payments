@@ -18,3 +18,37 @@ You can use the built-in `SubscriptionManager` which provides a Stream interface
 You can run the included example app on an Android device to test the payment flow with test product SKUs.
 
 [Example App](./example/lib/main.dart)
+
+##### FlutterPayments.billingEnabled
+Determine if Billing is available on the device.
+```dart
+final bool billingEnabled = await FlutterPayments.billingEnabled;
+```
+
+#### FlutterPayments.getProducts
+Fetch Product metadata from the store.
+
+```dart
+final List<Product> getProducts = await FlutterPayments.getProducts(
+  skus: <String>[
+    'android.test.purchased',
+    'android.test.canceled',
+  ],
+  type: ProductType.InApp,
+);
+```
+
+#### FlutterPayments.purchase
+```dart
+List<Purchase> purchase = await FlutterPayments.purchase(
+  sku: 'android.test.purchased',
+  type: ProductType.InApp,
+);
+```
+
+#### FlutterPayments.getPurchaseHistory
+Get the User's purchase history from the Store.  Returns a list of Purchase instances.
+```dart
+final List<Purchase> purchaseHistory = await FlutterPayments.getPurchaseHistory(ProductType.InApp);
+print('purchaseHistory: $purchaseHistory');
+```

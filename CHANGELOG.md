@@ -1,3 +1,7 @@
+## 0.1.2 - Cleanup tasks, no library code changes.
+* Removed dead code from example app
+* Added docs to README
+
 ## 0.1.1 - Fixed bug SubscriptionManager
 * I made an error when copying SubscriptionManager over from my app :/
 
