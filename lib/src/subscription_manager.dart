@@ -7,8 +7,6 @@ class SubscriptionManager {
   Purchase _activePurchase;
   List<SubscriptionProduct> _products;
 
-  Set<String> _productSkus;
-
   SubscriptionManager() {
     _streamController = StreamController<Purchase>.broadcast(onListen: () {
       _streamController.add(activePurchase);
@@ -25,10 +23,6 @@ class SubscriptionManager {
 
   List<SubscriptionProduct> get products => _products;
 
-  Set<String> get productSkus {
-    return _productSkus;
-  }
-
   bool get hasValidSubscription {
     if (_activePurchase != null) {
       return _activePurchase.isActive;
@@ -37,15 +31,11 @@ class SubscriptionManager {
     return false;
   }
 
-  Future<List<Object>> refresh({List<String> skusToRefresh}) {
-    if (skusToRefresh != null) {
-      _productSkus.addAll(skusToRefresh);
-    }
-
+  Future<List<Object>> refresh(List<String> skusToRefresh) {
     return Future.wait(<Future<Object>>[
       FlutterPayments
           .getProducts(
-        skus: productSkus.toList(growable: false),
+        skus: skusToRefresh,
         type: ProductType.Subscription,
       )
           .then((List<Product> result) {

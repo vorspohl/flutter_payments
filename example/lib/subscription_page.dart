@@ -18,7 +18,7 @@ class ManageSubscriptionPageState extends State<ManageSubscriptionPage> {
     super.initState();
 
     _purchaseStream = SubscriptionManager.instance.stream.listen((Purchase e) => setState(() {}));
-    SubscriptionManager.instance.refresh(skusToRefresh: ['my_subscription_sku']);
+    SubscriptionManager.instance.refresh(['my_subscription_sku']);
   }
 
   @override
