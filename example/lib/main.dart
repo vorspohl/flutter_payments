@@ -9,10 +9,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  List<String> logMessages = <String>[];
+
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    //    initPlatformState();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -62,12 +64,47 @@ class _MyAppState extends State<MyApp> {
     return new MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
-          title: new Text('Plugin example app'),
+          title: new Text('Flutter Payments'),
         ),
-        body: new Center(
-          child: new Text('Check the Flutter logs.'),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: new Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Text('Products for Purchase'),
+              buildPurchaseButton(context, 'android.test.canceled'),
+              buildPurchaseButton(context, 'android.test.purchased'),
+              buildPurchaseButton(context, 'android.test.item_unavailable'),
+              Text('Log Messages'),
+              Text(logMessages.join('\n')),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget buildPurchaseButton(BuildContext context, String productSku) {
+    return new RaisedButton(
+      onPressed: () async {
+        String message;
+        try {
+          final List<Purchase> list = await FlutterPayments.purchase(
+            sku: productSku,
+            type: ProductType.InApp,
+          );
+
+          message = list.toString();
+        } on FlutterPaymentsException catch (error) {
+          message = error.toString();
+        }
+
+        setState(() {
+          logMessages.add('Purchase of "$productSku" result:\n$message');
+        });
+      },
+      child: Text('Purchase "$productSku"'),
     );
   }
 }

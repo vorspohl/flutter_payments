@@ -32,7 +32,7 @@ class FlutterPayments {
       );
 
   static Future<List<Product>> getProducts({List<String> skus, ProductType type}) async {
-    final List<Map<String, dynamic>> result = await _channel.invokeMethod(
+    final List<dynamic> result = await _channel.invokeMethod(
       'getProducts',
       <String, dynamic>{
         'skus': skus,
@@ -66,17 +66,8 @@ class FlutterPayments {
         type,
       );
     } on PlatformException catch (e) {
-      switch (e.code) {
-        case 'USER_CANCELED':
-          throw UserCanceled();
-        case 'ITEM_UNAVAILABLE':
-          throw ItemUnavailable();
-        case 'ITEM_ALREADY_OWNED':
-          throw ItemAlreadyOwned();
-      }
+      throw FlutterPaymentsException.fromPlatformException(e);
     }
-
-    return null;
   }
 
   static Future<String> consumeToken(String token) async {
@@ -110,7 +101,7 @@ class FlutterPayments {
   }
 }
 
-Future<List<Purchase>> _inflatePurchases(List<Map<String, dynamic>> result, ProductType type) async {
+Future<List<Purchase>> _inflatePurchases(List<dynamic> result, ProductType type) async {
   if (result == null || result.isEmpty) {
     return null;
   }
