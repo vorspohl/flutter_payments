@@ -1,4 +1,4 @@
-## 0.1.2 - Cleanup tasks, no library code changes.
+## 0.1.3 - Cleanup tasks, no library code changes.
 * Removed dead code from example app
 * Added docs to README
 
