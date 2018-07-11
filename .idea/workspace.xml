@@ -10,22 +10,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="add2757f-3f84-4967-98cf-4c6cfca9d133" name="Default" comment="added SubscriptionManager (extracted from RVU Insight)&#10;updated README.md to include docs&#10;updated example app&#10;added better translation of Google Play errors">
-      <change afterPath="$PROJECT_DIR$/example/lib/subscription_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/subscription_manager.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/example_lib_main_dart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/example_lib_main_dart.xml" afterDir="false" />
+    <list default="true" id="add2757f-3f84-4967-98cf-4c6cfca9d133" name="Default" comment="bump version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/co/delightfulgoods/flutterpayments/FlutterPaymentsPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/kotlin/co/delightfulgoods/flutterpayments/FlutterPaymentsPlugin.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/co/delightfulgoods/flutterpayments/utils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/kotlin/co/delightfulgoods/flutterpayments/utils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/test/widget_test.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Classes/SwiftFlutterPaymentsPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/SwiftFlutterPaymentsPlugin.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_payments.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_payments.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/plugin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/plugin.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/types.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/types.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/product_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/product_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -92,92 +79,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="plugin.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/src/plugin.dart">
+      <file leaf-file-name="pubspec.yaml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pubspec.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="601">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
+            <state relative-caret-position="84">
+              <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FlutterPaymentsPlugin.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/android/src/main/kotlin/co/delightfulgoods/flutterpayments/FlutterPaymentsPlugin.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="57" column="63" selection-start-line="57" selection-start-column="63" selection-end-line="57" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="subscription_manager.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/src/subscription_manager.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="19" column="76" lean-forward="true" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="76" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
+      <file leaf-file-name="CHANGELOG.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="272">
-                <caret line="14" selection-start-line="14" selection-end-line="14" />
-              </first_editor>
+              <first_editor />
               <second_editor>
                 <markdownNavigatorState />
               </second_editor>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="subscription_page.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/lib/subscription_page.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/android/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/android/src/main/kotlin/co/delightfulgoods/flutterpayments/utils.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="33" column="49" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/android/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="80" column="14" selection-start-line="80" selection-start-column="14" selection-end-line="80" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -230,7 +148,6 @@
         <option value="$PROJECT_DIR$/ios/flutter_payments.podspec" />
         <option value="$PROJECT_DIR$/example/ios/Podfile" />
         <option value="$PROJECT_DIR$/ios/Classes/SwiftFlutterPaymentsPlugin.swift" />
-        <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/example/.gitignore" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/lib/src/product.dart" />
@@ -247,6 +164,8 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/lib/src/plugin.dart" />
         <option value="$PROJECT_DIR$/android/src/main/kotlin/co/delightfulgoods/flutterpayments/FlutterPaymentsPlugin.kt" />
+        <option value="$PROJECT_DIR$/pubspec.yaml" />
+        <option value="$PROJECT_DIR$/CHANGELOG.md" />
       </list>
     </option>
   </component>
@@ -1438,7 +1357,21 @@
       <option name="project" value="LOCAL" />
       <updated>1531341031973</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added SubscriptionManager (extracted from RVU Insight)&#10;updated README.md to include docs&#10;updated example app&#10;added better translation of Google Play errors">
+      <created>1531341199829</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1531341199829</updated>
+    </task>
+    <task id="LOCAL-00004" summary="bump version">
+      <created>1531341227623</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1531341227623</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1530,7 +1463,8 @@
     <MESSAGE value="published v0.0.1" />
     <MESSAGE value="junit version bump?&#10;[fixes #2]" />
     <MESSAGE value="added SubscriptionManager (extracted from RVU Insight)&#10;updated README.md to include docs&#10;updated example app&#10;added better translation of Google Play errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="added SubscriptionManager (extracted from RVU Insight)&#10;updated README.md to include docs&#10;updated example app&#10;added better translation of Google Play errors" />
+    <MESSAGE value="bump version" />
+    <option name="LAST_COMMIT_MESSAGE" value="bump version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1545,7 +1479,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/purchase.js" />
     <entry file="file://$PROJECT_DIR$/protobuf/purchase.proto" />
     <entry file="file://$PROJECT_DIR$/protobuf/purchase.pbserver.dart" />
     <entry file="file://$PROJECT_DIR$/protobuf/purchase.pbenum.dart" />
@@ -1782,10 +1715,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="420">
+            <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/subscription_manager.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="27" lean-forward="true" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
+        <state relative-caret-position="399">
+          <caret line="19" column="76" lean-forward="true" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="76" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/src/main/kotlin/co/delightfulgoods/flutterpayments/FlutterPaymentsPlugin.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="57" column="63" selection-start-line="57" selection-start-column="63" selection-end-line="57" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/plugin.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="70" selection-start-line="70" selection-end-line="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/lib/subscription_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/src/main/kotlin/co/delightfulgoods/flutterpayments/utils.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="33" column="49" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -1799,70 +1792,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/android/build.gradle">
+    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
+        <state relative-caret-position="84">
+          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/example/android/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/subscription_manager.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="19" column="76" lean-forward="true" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="76" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/src/main/kotlin/co/delightfulgoods/flutterpayments/utils.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="33" column="49" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/subscription_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/plugin.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="601">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/src/main/kotlin/co/delightfulgoods/flutterpayments/FlutterPaymentsPlugin.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="57" column="63" selection-start-line="57" selection-start-column="63" selection-end-line="57" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="272">
-            <caret line="14" selection-start-line="14" selection-end-line="14" />
-          </first_editor>
+          <first_editor />
           <second_editor>
             <markdownNavigatorState />
           </second_editor>
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
