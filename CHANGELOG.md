@@ -1,3 +1,6 @@
+## 0.1.4 - Cleanup tasks, no library code changes.
+* Actually fix the JUnit 5 error in the build.gradle.
+
 ## 0.1.3 - Cleanup tasks, no library code changes.
 * Removed dead code from example app
 * Added docs to README

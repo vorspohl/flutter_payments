@@ -2,7 +2,7 @@ name: flutter_payments
 author: Delightful Goods, Inc. <hello@delightfulgoods.co>
 homepage: https://github.com/pplante/flutter_payments
 description: In App Payments for Apple and Google Play, supporting all forms of IAP products.
-version: 0.1.3
+version: 0.1.4
 
 environment:
   sdk: ">=2.0.0-dev.28.0 <3.0.0"
