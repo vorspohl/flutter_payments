@@ -36,8 +36,7 @@ class ManageSubscriptionPageState extends State<ManageSubscriptionPage> {
     if (activePurchase != null) {
       list.add(Text('Subscribed to: ${activePurchase.product.title}'));
     } else {
-      final List<Widget> result =
-          SubscriptionManager.instance.products?.map((SubscriptionProduct p) => Text(p.title))?.toList();
+      final List<Widget> result = SubscriptionManager.instance.products?.map(buildPurchaseButton)?.toList();
       if (result != null) {
         list.addAll(result);
       }
@@ -48,4 +47,11 @@ class ManageSubscriptionPageState extends State<ManageSubscriptionPage> {
       children: list,
     );
   }
+
+  Widget buildPurchaseButton(SubscriptionProduct p) => RaisedButton(
+        child: Text('Purchase ${p.title}'),
+        onPressed: () {
+          SubscriptionManager.instance.initiatePurchase(p);
+        },
+      );
 }

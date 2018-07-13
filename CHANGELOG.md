@@ -1,3 +1,8 @@
+## 0.1.5 - Fix iOS
+* Fixed an error where `channel` got nuked in Swift code
+* Added purchase buttons to the SubscriptionManager example page
+* Added `consumeToken` for Android, still a WIP!
+
 ## 0.1.4 - Cleanup tasks, no library code changes.
 * Actually fix the JUnit 5 error in the build.gradle.
 

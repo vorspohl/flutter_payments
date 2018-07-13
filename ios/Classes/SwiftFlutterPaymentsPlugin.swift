@@ -17,6 +17,7 @@ public class SwiftFlutterPaymentsPlugin: NSObject, FlutterPlugin {
      static let instance:SwiftFlutterPaymentsPlugin = SwiftFlutterPaymentsPlugin()
     
     public static func register(with registrar: FlutterPluginRegistrar) {
+        let channel = FlutterMethodChannel(name: "co.delightfulgoods.flutterpayments", binaryMessenger: registrar.messenger())
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
 

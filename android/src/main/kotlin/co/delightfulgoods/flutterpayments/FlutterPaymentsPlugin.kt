@@ -65,10 +65,20 @@ class FlutterPaymentsPlugin(var activity: Activity) : MethodCallHandler {
             "getProducts" -> getProducts(result, call.argument("skus"), strToSkuType(call.argument("productType")))
             "purchase" -> purchase(result, call.argument("sku"), strToSkuType(call.argument("productType")))
             "modifySubscription" -> modifySubscription(result, call.argument("oldSku"), call.argument("newSku"))
+            "consumeToken" -> consumeToken(result, call.argument("token"))
             "billingEnabled" -> result.success(billingIsAvailable)
             else -> result.notImplemented()
         }
 
+    }
+
+    private fun consumeToken(result: Result, purchaseToken: String) {
+        billingClient.consumeAsync(purchaseToken) { responseCode: Int, responseToken: String ->
+            when (responseCode) {
+                OK -> result.success(responseToken)
+                else -> responseHandler(responseCode, result)
+            }
+        }
     }
 
     private fun modifySubscription(result: Result, oldSku: String, newSku: String) {

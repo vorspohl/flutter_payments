@@ -11,7 +11,9 @@ import 'types.dart';
 class FlutterPayments {
   static const MethodChannel _channel = const MethodChannel('co.delightfulgoods.flutterpayments');
 
-  static Future<List<Purchase>> getPurchaseHistory(ProductType type) async => await _inflatePurchases(
+  static Future<List<Purchase>> getPurchaseHistory(ProductType type) async {
+    try {
+      return await _inflatePurchases(
         await _channel.invokeMethod(
           'getPurchaseHistory',
           <String, dynamic>{
@@ -20,8 +22,14 @@ class FlutterPayments {
         ),
         type,
       );
+    } on PlatformException catch (e) {
+      throw FlutterPaymentsException.fromPlatformException(e);
+    }
+  }
 
-  static Future<List<Purchase>> getPurchases(ProductType type) async => await _inflatePurchases(
+  static Future<List<Purchase>> getPurchases(ProductType type) async {
+    try {
+      return await _inflatePurchases(
         await _channel.invokeMethod(
           'getPurchaseHistory',
           <String, dynamic>{
@@ -30,25 +38,33 @@ class FlutterPayments {
         ),
         type,
       );
+    } on PlatformException catch (e) {
+      throw FlutterPaymentsException.fromPlatformException(e);
+    }
+  }
 
   static Future<List<Product>> getProducts({List<String> skus, ProductType type}) async {
-    final List<dynamic> result = await _channel.invokeMethod(
-      'getProducts',
-      <String, dynamic>{
-        'skus': skus,
-        'productType': type.toString(),
-      },
-    );
+    try {
+      final List<dynamic> result = await _channel.invokeMethod(
+        'getProducts',
+        <String, dynamic>{
+          'skus': skus,
+          'productType': type.toString(),
+        },
+      );
 
-    if (result == null) {
-      return null;
+      if (result == null) {
+        return null;
+      }
+
+      if (type == ProductType.InApp) {
+        return result.map<Product>(Product.fromMap).toList(growable: false);
+      }
+
+      return result.map<SubscriptionProduct>(SubscriptionProduct.fromMap).toList(growable: false);
+    } on PlatformException catch (e) {
+      throw FlutterPaymentsException.fromPlatformException(e);
     }
-
-    if (type == ProductType.InApp) {
-      return result.map<Product>(Product.fromMap).toList(growable: false);
-    }
-
-    return result.map<SubscriptionProduct>(SubscriptionProduct.fromMap).toList(growable: false);
   }
 
   static Future<bool> get billingEnabled async => await _channel.invokeMethod('billingEnabled');
@@ -71,25 +87,34 @@ class FlutterPayments {
   }
 
   static Future<String> consumeToken(String token) async {
-    return await _channel.invokeMethod(
-      'consumeToken',
-      <String, dynamic>{
-        'token': token,
-      },
-    );
+    try {
+      return await _channel.invokeMethod(
+        'consumeToken',
+        <String, dynamic>{
+          'token': token,
+        },
+      );
+    } on PlatformException catch (e) {
+      throw FlutterPaymentsException.fromPlatformException(e);
+    }
   }
 
   static Future<List<Purchase>> modifySubscription({
     String newSku,
     String oldSku,
-  }) async =>
-      await _channel.invokeMethod(
+  }) async {
+    try {
+      return await _channel.invokeMethod(
         'modifySubscription',
         <String, dynamic>{
           'oldSku': oldSku,
           'newSku': newSku,
         },
       );
+    } on PlatformException catch (e) {
+      throw FlutterPaymentsException.fromPlatformException(e);
+    }
+  }
 
   static void launchManageSubscription() async {
     if (defaultTargetPlatform == TargetPlatform.android) {

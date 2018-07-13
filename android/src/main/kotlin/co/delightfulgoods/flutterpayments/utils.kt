@@ -31,7 +31,7 @@ internal fun responseHandler(responseCode: Int, result: MethodChannel.Result) {
         ITEM_ALREADY_OWNED -> result.error("ITEM_ALREADY_OWNED", null, null)
         ITEM_NOT_OWNED -> result.error("ITEM_NOT_OWNED", null, null)
         SERVICE_UNAVAILABLE, BILLING_UNAVAILABLE -> result.error("BILLING_UNAVAILABLE", null, null)
-        else -> result.error("ERROR", null, null)
+        else -> result.error("ERROR", "Billing responseCode: $responseCode", null)
     }
 }
 
