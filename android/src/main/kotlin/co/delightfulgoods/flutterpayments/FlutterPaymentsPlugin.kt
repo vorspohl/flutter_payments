@@ -72,7 +72,7 @@ class FlutterPaymentsPlugin(var activity: Activity) : MethodCallHandler {
 
     }
 
-    private fun consumeToken(result: Result, purchaseToken: String) {
+    private fun consumeToken(result: Result, purchaseToken: String?) {
         billingClient.consumeAsync(purchaseToken) { responseCode: Int, responseToken: String ->
             when (responseCode) {
                 OK -> result.success(responseToken)
@@ -81,7 +81,7 @@ class FlutterPaymentsPlugin(var activity: Activity) : MethodCallHandler {
         }
     }
 
-    private fun modifySubscription(result: Result, oldSku: String, newSku: String) {
+    private fun modifySubscription(result: Result, oldSku: String?, newSku: String?) {
         val flowParams = BillingFlowParams.newBuilder()
                 .setOldSku(oldSku)
                 .setSku(newSku)
@@ -91,7 +91,7 @@ class FlutterPaymentsPlugin(var activity: Activity) : MethodCallHandler {
         launchBillingFlow(flowParams, result)
     }
 
-    private fun purchase(result: Result, sku: String, skuType: String) {
+    private fun purchase(result: Result, sku: String?, skuType: String?) {
         val flowParams = BillingFlowParams.newBuilder()
                 .setSku(sku)
                 .setType(skuType)
@@ -109,7 +109,7 @@ class FlutterPaymentsPlugin(var activity: Activity) : MethodCallHandler {
         }
     }
 
-    private fun getPurchaseHistory(result: Result, skuType: String) {
+    private fun getPurchaseHistory(result: Result, skuType: String?) {
         billingClient.queryPurchaseHistoryAsync(skuType) { responseCode, data ->
             when (responseCode) {
                 OK -> result.success(data?.map(::purchaseToMap))
@@ -118,7 +118,7 @@ class FlutterPaymentsPlugin(var activity: Activity) : MethodCallHandler {
         }
     }
 
-    private fun getProducts(result: Result, skus: List<String>, skuType: String) {
+    private fun getProducts(result: Result, skus: List<String>?, skuType: String?) {
         val params = SkuDetailsParams.newBuilder()
                 .setSkusList(skus)
                 .setType(skuType)
