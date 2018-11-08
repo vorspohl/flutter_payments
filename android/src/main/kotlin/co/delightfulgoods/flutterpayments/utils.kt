@@ -61,7 +61,7 @@ internal fun productToMap(skuDetail: SkuDetails): Map<String, String> {
 }
 
 
-internal fun strToSkuType(typeStr: String): String {
+internal fun strToSkuType(typeStr: String?): String {
     return when (typeStr) {
         "ProductType.InApp" -> BillingClient.SkuType.INAPP
         "ProductType.Subscription" -> BillingClient.SkuType.SUBS
