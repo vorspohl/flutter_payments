@@ -11,12 +11,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  url_launcher: "^3.0.2"
+  url_launcher: "^5.0.2"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: "^2.2.3"
+  mockito: "^4.0.0"
 
 flutter:
   plugin:
